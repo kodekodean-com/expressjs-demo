@@ -3,16 +3,18 @@ const logger = require('./logger');
 const auth = require('./auth');
 
 const express = require('express');
+const helmet = require('helmet');
+const morgan = require('morgan');
 const app = express();
 
 //Middleware Section
 app.use(express.json()); // middleware for reprosing in pipeline
 app.use(express.urlencoded({extended:true})); //key=value&key=value
 app.use(express.static('public')); // public on url infolder public
-
 app.use(logger);
-
-app.use(auth);
+// app.use(auth);
+app.use(helmet());
+app.use(morgan('tiny'));
 
 const courses = [
     {id:1, name:'course1'},
@@ -22,7 +24,6 @@ const courses = [
 ];
 
 app.get('/',(req,res)=>{
-
     res.send('Hello World');
 });
 
