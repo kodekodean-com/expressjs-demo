@@ -1,21 +1,30 @@
 # expressjs-demo
 
-How to use express JS -Handling POST Request
+How to use express JS - Input Validation
 
-add first :
-app.use(express.json()); // middleware for reprosing in pipeline
+using joi from npm to validate input.
 
-create code 
+write this on your bash : npm i joi 
 
-app.post('/api/courses',(req,res)=>{
-    const course = {
-        id:courses.length + 1,
-        name:req.body.name
-    };
 
-    courses.push(course); // adding obejecct to array.
-    res.send(course);
-});
+traditional validation:
+ if(!req.body.name || req.body.name.length < 3){
+        //400 Bad request
+
+        res.status(400).send('Name is required and should be minimum 3 characters.');
+        return;
+    }
+
+
+with Joi Validation:
+
+const schema ={
+        name: Joi.string().min(3).required();
+    }
+
+const result = Joi.validate(req.body,schema);
+
+
 
 dont forget use service for hit http POST.
 
