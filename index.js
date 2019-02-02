@@ -7,20 +7,26 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const app = express();
 
+
+
 //Middleware Section
 app.use(express.json()); // middleware for reprosing in pipeline
 app.use(express.urlencoded({extended:true})); //key=value&key=value
 app.use(express.static('public')); // public on url infolder public
-app.use(logger);
+
 // app.use(auth);
 app.use(helmet());
-app.use(morgan('tiny'));
+
+if(app.get('env') === 'development'){
+    app.use(morgan('tiny'));
+    console.log('Morgan enabled.....');
+
+}
 
 const courses = [
     {id:1, name:'course1'},
     {id:2, name:'course2'},
-    {id:3, name:'course3'},
-    {id:4, name:'course4'}
+    {id:3, name:'course3'}
 ];
 
 app.get('/',(req,res)=>{

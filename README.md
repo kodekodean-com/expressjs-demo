@@ -1,17 +1,30 @@
 # expressjs-demo
 
-How to use express JS - Third Party Middleware 
+How to use express JS - Clustering Environtment
+
+set environtment you can use
+
+Windows     :
+
+set NODE_ENV=value
+
+Mac         :
+
+export NODE_ENV=value
+
+create this on the code
+
+if(app.get('env') === 'development'){
+    app.use(morgan('tiny'));
+    console.log('Morgan enabled.....');
+
+}
+
+it will make morgan enable just on development environtment.
 
 
-hello for third party middleware of this express js you can find on their website.
-
--go to resource menu
--choose middleware
 
 
-you will see alot of middleware 
-
-i will choose 'helmet' middlearware
 
 
 dont forget use service for hit http POST.
