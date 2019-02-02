@@ -1,28 +1,28 @@
 # expressjs-demo
 
-How to use express JS -Handling Get Request
+How to use express JS -Handling POST Request
 
-array of courses
+add first :
+app.use(express.json()); // middleware for reprosing in pipeline
 
-const courses = [
-    {id:1, name:'course1'},
-    {id:2, name:'course2'},
-    {id:3, name:'course3'},
-    {id:4, name:'course4'}
-]; 
+create code 
 
-app.get('/api/courses/:id',(req,res)=>{
-    const course = courses.find(c => c.id === parseInt(req.params.id)); // why use const? because i dont want change it.
-    if(course){
-        res.status(200).send(course); // return 200
-    }else{
+app.post('/api/courses',(req,res)=>{
+    const course = {
+        id:courses.length + 1,
+        name:req.body.name
+    };
 
-        res.status(404).send('ID not Found'); //return 404
-
-    }
-    
+    courses.push(course); // adding obejecct to array.
+    res.send(course);
 });
 
+dont forget use service for hit http POST.
+
+me using POSTMAN :)
+
+you can download here:
+https://www.getpostman.com/
 
 
 
