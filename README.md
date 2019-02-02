@@ -1,23 +1,35 @@
 # expressjs-demo
 
-How  to use HTTP GET using express JS - Environtment Variables
+How  to use express JS - Route Parameter
 
-We Cant rely just only with single port, because when you deploy your application the port will dinamically assign to your application
+app.get('/api/posts/:year/:month',(req,res)=>{
+    // how to get query of parameter http://localhost:3000/api/posts/2019/2?sortBy=year
+    var query_parameter = req.query;
+    var get_parameter = req.params;
+    res.send(get_parameter);
 
-With this Environtment Variables you can change it dinamically, because Environtment Variables it self is outside your application.
+});
 
-on your local env you can set PORT with this way:
+var query_parameter = req.query;
+var get_parameter = req.params;
 
-windows :
+you can set response with both of those parameter.
 
-set PORT=Value
+if you want get specific parameter using req.params
 
-mac     :
+add the attribute on the end of string, like this:
 
-export PORT=value
+req.params.year
+
+or
+
+req.params.month
+
+
+
 
 Please do "npm install" before you run my code.
 
-run "node index.js"
+run "nodemon index.js"
 
 www.kodekodean.com
