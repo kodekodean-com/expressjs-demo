@@ -1,7 +1,9 @@
 # expressjs-demo
 
-Hi All this is my source code while learning about nodejs especially about expressjs.
+How  to use HTTP GET using express JS
 
 Please do "npm install" before you run my code.
+
+run "node index.js"
 
 www.kodekodean.com
