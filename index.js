@@ -31,24 +31,9 @@ app.post('/api/courses',(req,res)=>{
     //     res.status(400).send('Name is required and should be minimum 3 characters.');
     //     return;
     // }
-
-
-    const schema ={
-        name: Joi.string().min(3).required()
-    };
-
-    const result = Joi.validate(req.body,schema);
+    const { error } = validateCourse(req.body);
+    if(error) res.status(400).send(error.details[0].message); return;
     
-    console.log(result);
-
-    if(result.error){
-        res.status(400).send(result.error.details[0].message);
-        return
-    }else{
-        res.status(200).send(result.value);
-        return
-    }
-
 
     const course = {
         id:courses.length + 1,
@@ -58,6 +43,40 @@ app.post('/api/courses',(req,res)=>{
     courses.push(course);
     res.send(course);
 });
+
+
+app.put('/api/courses/:id',(req,res)=>{
+    //Lookup the course
+    // if not existing, return 404
+    
+    const course = courses.find(c => c.id === parseInt(req.params.id));
+    if(!course) res.status(404).send('ID not Found'); return;
+
+    //validate0
+    //if invalid, return 400 - Bad Request
+
+    const { error } = validateCourse(req.body);
+    
+    if(error) res.status(400).send(error.details[0].message); return;
+
+    // update course 
+    // return updated course
+    course.name = req.body.name;
+    res.send(course);
+});
+
+
+function validateCourse(course){
+
+    const schema ={
+        name: Joi.string().min(3).required()
+    };
+    return Joi.validate(course,schema);
+
+
+}
+
+
 
 
 
