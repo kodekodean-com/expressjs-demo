@@ -1,9 +1,18 @@
 const Joi = require('joi');
-const express = require('express');
+const logger = require('./logger');
+const auth = require('./auth');
 
+const express = require('express');
 const app = express();
 
+//Middleware Section
 app.use(express.json()); // middleware for reprosing in pipeline
+app.use(express.urlencoded({extended:true})); //key=value&key=value
+app.use(express.static('public')); // public on url infolder public
+
+app.use(logger);
+
+app.use(auth);
 
 const courses = [
     {id:1, name:'course1'},

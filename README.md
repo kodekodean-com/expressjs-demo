@@ -1,25 +1,31 @@
 # expressjs-demo
 
-How to use express JS - Handling DELETE Request
+How to use express JS - Middleware 
 
 
-delete function
+first you need to create folder 'logger.js' on you root folder.
 
-app.delete('/api/courses/:id',( req, res) => {
- // Look up the course
- //Not existing, return 404
- const course = courses.find(c => c.id === parseInt(req.params.id));
- if(!course) return res.status(404).send('ID not Found'); 
+and then paste this code:
 
- //delete
- const index = courses.indexOf(course);
- courses.splice(index,1);
+function log(req,res,next){
+    console.log('Logging...');
+    next();
+}
 
- //return the same course
- res.send(course);
+module.exports = log
 
-});
 
+and add this code to the top of your code on 'index.js'
+
+const logger = require('./logger');
+
+find code blow:
+app.use(express.json());
+
+add this code under the code you find before:
+app.use(logger); // basiccally this is a middleware.
+
+you can check the result on your bash while you run 'nodemon index.js' it will recorded on bash.
 
 
 
