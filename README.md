@@ -1,40 +1,24 @@
 # expressjs-demo
 
-How to use express JS - Handling PUT Request
+How to use express JS - Handling DELETE Request
 
-this function for update course data using put 
 
-app.put('/api/courses/:id',(req,res)=>{
-    //Lookup the course
-    // if not existing, return 404
-    
-    const course = courses.find(c => c.id === parseInt(req.params.id));
-    if(!course) res.status(404).send('ID not Found'); return;
+delete function
 
-    //validate0
-    //if invalid, return 400 - Bad Request
+app.delete('/api/courses/:id',( req, res) => {
+ // Look up the course
+ //Not existing, return 404
+ const course = courses.find(c => c.id === parseInt(req.params.id));
+ if(!course) return res.status(404).send('ID not Found'); 
 
-    const { error } = validateCourse(req.body);
-    
-    if(error) res.status(400).send(error.details[0].message); return;
+ //delete
+ const index = courses.indexOf(course);
+ courses.splice(index,1);
 
-    // update course 
-    // return updated course
-    course.name = req.body.name;
-    res.send(course);
+ //return the same course
+ res.send(course);
+
 });
-
-validation course function for validate data before go to next process.
-
-function validateCourse(course){
-
-    const schema ={
-        name: Joi.string().min(3).required()
-    };
-    return Joi.validate(course,schema);
-
-
-}
 
 
 
