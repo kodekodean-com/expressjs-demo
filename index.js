@@ -2,22 +2,34 @@ const express = require('express');
 
 const app = express();
 
+const courses = [
+    {id:1, name:'course1'},
+    {id:2, name:'course2'},
+    {id:3, name:'course3'},
+    {id:4, name:'course4'}
+];
+
 app.get('/',(req,res)=>{
 
     res.send('Hello World');
 });
 
 app.get('/api/courses',(req,res)=>{
-    res.send([1,2,3]);
+    res.send(courses);
 });
 
-app.get('/api/posts/:year/:month',(req,res)=>{
-    // how to get query of parameter http://localhost:3000/api/posts/2019/2?sortBy=year
-    var query_parameter = req.query;
-    var get_parameter = req.params;
-    res.send(get_parameter);
+app.get('/api/courses/:id',(req,res)=>{
+    const course = courses.find(c => c.id === parseInt(req.params.id));
+    if(course){
+        res.status(200).send(course);
+    }else{
 
+        res.status(404).send('ID not Found');
+
+    }
+    
 });
+
 
 //PORT
 const port =  process.env.PORT || 3000;

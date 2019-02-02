@@ -1,29 +1,27 @@
 # expressjs-demo
 
-How  to use express JS - Route Parameter
+How to use express JS -Handling Get Request
 
-app.get('/api/posts/:year/:month',(req,res)=>{
-    // how to get query of parameter http://localhost:3000/api/posts/2019/2?sortBy=year
-    var query_parameter = req.query;
-    var get_parameter = req.params;
-    res.send(get_parameter);
+array of courses
 
+const courses = [
+    {id:1, name:'course1'},
+    {id:2, name:'course2'},
+    {id:3, name:'course3'},
+    {id:4, name:'course4'}
+]; 
+
+app.get('/api/courses/:id',(req,res)=>{
+    const course = courses.find(c => c.id === parseInt(req.params.id)); // why use const? because i dont want change it.
+    if(course){
+        res.status(200).send(course); // return 200
+    }else{
+
+        res.status(404).send('ID not Found'); //return 404
+
+    }
+    
 });
-
-var query_parameter = req.query;
-var get_parameter = req.params;
-
-you can set response with both of those parameter.
-
-if you want get specific parameter using req.params
-
-add the attribute on the end of string, like this:
-
-req.params.year
-
-or
-
-req.params.month
 
 
 
