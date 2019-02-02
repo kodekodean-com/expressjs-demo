@@ -1,6 +1,6 @@
 # expressjs-demo
 
-How  to use HTTP GET using express JS
+How  to use HTTP GET using express JS - Nodemon (Node Monitor)
 
 Please do "npm install" before you run my code.
 
