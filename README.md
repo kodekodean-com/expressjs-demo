@@ -1,28 +1,8 @@
 # expressjs-demo
 
-How to use express JS - Templating Engines
-Hi now i will show u how to use templating engine.
+How to use express JS - Restruture express app js
 
--first you nit to install to 'npm i pug'
 
--then create folder 'views' on the root of folder
-
--after that you can add this code to index.js on the root of folder:
-app.set('view engine','pug');
-
--change respond from route like this:
-app.get('/',(req,res)=>{
-    res.render('index',{'title':'My Express JS', 'message':'Hello'});
-});
-
--create file 'index.pug' on views folder and write down this html code
-html
-    head    
-        title=title
-    body
-        h1=message
-
--done
 
 
 
