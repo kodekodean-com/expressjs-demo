@@ -1,32 +1,30 @@
 # expressjs-demo
 
-How to use express JS - Configuration
+How to use express JS - Templating Engines
+Hi now i will show u how to use templating engine.
 
-iam using 'npm i config'
+-first you nit to install to 'npm i pug'
 
-Windows write on powershell 
+-then create folder 'views' on the root of folder
 
-$env:NODE_ENV="production" or $env:NODE_ENV="development"
+-after that you can add this code to index.js on the root of folder:
+app.set('view engine','pug');
 
+-change respond from route like this:
+app.get('/',(req,res)=>{
+    res.render('index',{'title':'My Express JS', 'message':'Hello'});
+});
 
-Using Mac u can  use :
+-create file 'index.pug' on views folder and write down this html code
+html
+    head    
+        title=title
+    body
+        h1=message
 
-export NODE_ENV=value
-
-
-you can't put password on json but you can put it on server:
--create custom-environment-variables.json on config folder 
--
-    Windows write on powershell 
-
-    $env:app_password="value" 
-
-    Using Mac u can  use :
-
-    export app_password=value
 -done
 
-your password will be not knoe by other on repository github :)
+
 
 dont forget use service for hit http POST.
 

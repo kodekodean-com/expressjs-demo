@@ -10,6 +10,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const app = express();
 
+app.set('view engine','pug');
+
 
 
 //Middleware Section
@@ -43,7 +45,7 @@ const courses = [
 ];
 
 app.get('/',(req,res)=>{
-    res.send('Hello World');
+    res.render('index',{'title':'My Express JS', 'message':'Hello'});
 });
 
 app.get('/api/courses',(req,res)=>{
