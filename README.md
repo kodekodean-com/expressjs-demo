@@ -1,31 +1,32 @@
 # expressjs-demo
 
-How to use express JS - Clustering Environtment
+How to use express JS - Configuration
 
-set environtment you can use
+iam using 'npm i config'
 
-Windows     :
+Windows write on powershell 
 
-set NODE_ENV=value
+$env:NODE_ENV="production" or $env:NODE_ENV="development"
 
-Mac         :
+
+Using Mac u can  use :
 
 export NODE_ENV=value
 
-create this on the code
 
-if(app.get('env') === 'development'){
-    app.use(morgan('tiny'));
-    console.log('Morgan enabled.....');
+you can't put password on json but you can put it on server:
+-create custom-environment-variables.json on config folder 
+-
+    Windows write on powershell 
 
-}
+    $env:app_password="value" 
 
-it will make morgan enable just on development environtment.
+    Using Mac u can  use :
 
+    export app_password=value
+-done
 
-
-
-
+your password will be not knoe by other on repository github :)
 
 dont forget use service for hit http POST.
 
